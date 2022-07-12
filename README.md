@@ -1,51 +1,58 @@
-# alticci Project
+## Altici - Java/Quakus
+ - Felipe Silva - https://www.linkedin.com/in/felipe-silva-b7127a160/
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+Teste alticci feito em Java usando framework Quakus
 
-## Running the application in dev mode
+# Sequencia Alticci a(n) é definida como:
+- Para n = 0, a(0) = 0
+- Para n = 1, a(1) = 1
+- Para n = 2, a(2) = 1
+- Para n > 2, a(n) = a(n-3) + a(n-2)
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
+# Exemplo de saída:
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+| n |   |   |   |a(n)|
+|---|---|---|---|---|
+|1  |   |   |   | 0 |
+|2  |   |   |   | 1 |
+|3  |   |   |   | 1 |
+|4  |   |   |   | 1 |
+|5  |   |   |   | 2 |
+|6  |   |   |   | 2 |
+|7  |   |   |   | 3 |
+|8  |   |   |   | 4 |
+|9  |   |   |   | 5 |
+|10 |   |   |   | 7 |
+|11 |   |   |   | 9 |
 
-## Packaging and running the application
+# Execução
 
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+Obs.: O desenvolvimento e execução desse projeto foi feito no Linux Ubuntu 22.04 LTS. Este passo-a-passo de execução pode não funcionar integralmente em distros não baseadas em Debian (Fedora, Arch, CentOS, etc);
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+### Requisitos:
+- Instalação do cliente do Framework Quakus.
+[Quarkus client](https://quarkus.io/guides/cli-tooling#:~:text=Scoop-,The,-Quarkus%20CLI%20is)
+- Instalação do Docker.
+[Docker install](https://docs.docker.com/engine/install/ubuntu/#:~:text=from%20the%20repository.-,Set%20up%20the%20repository,-Update%20the%20apt)
 
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
+Após a instalação, executar o comando para compilar a aplicação
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+- `./mvnw package -Pnative`
 
-## Creating a native executable
+E o seguinte comando para executar
 
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
-```
+- `./target/alticci-1.0.0-SNAPSHOT-runner`
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
-```
+E o server será executado na porta 8080
 
-You can then execute your native executable with: `./target/alticci-1.0.0-SNAPSHOT-runner`
+É possivel testar o endpoint pelo swagger
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
+- `http://localhost:8080/swagger-ui`
 
-## Related Guides
 
+ou chamando diretamente pelo navegador
+
+- `http://localhost:8080/alticci/10`
+
+em que 10, é o numéro da sequencia
